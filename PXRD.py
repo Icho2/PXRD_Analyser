@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Just replace the path for your .csv file's path
+comp = input("Mac or Windows? (m/w) ")
 path = input("Enter file path: ")  # make sure to get rid of the quaotations in your input
 include = input("Enter what graphs you want to see (for all type all): ")
 title = input("Enter title: ")
@@ -9,7 +10,7 @@ color = input("Do you want to color code your graphs? (y/n) ")
 
 if (path == "example"):
     path = 'C:/Users/mauri/OneDrive/Desktop/Humphrey_Lab/Ben Siu/ligand.csv'
-else:
+elif (path != "example" and comp == "w"):
     path = path.replace('\\', '/')
     path = path.replace('"', '')
 
@@ -20,7 +21,9 @@ translation = 0
 used_colors = {}
 
 if include == "all":
-    graphs = list(range(0, len(data.columns) + 1))
+    graphs = []
+    for i in range(0, (len(data.columns)//2)):
+        graphs.append(2*i + 1)
 else:
     include = include.split()
     include = [eval(i) for i in include]
